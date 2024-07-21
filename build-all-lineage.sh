@@ -46,6 +46,8 @@ sudo bash ./run-huawei-emui9-ab-a13.sh /home/iceows/build-output/LeaOS-20.0-${sr
 mv s-erofs.img /media/iceows/Sauvegardes/ice-rom/LeaOS/20.0/LeaOS-20.0-${srcDateFile}-iceows-stk.img
 sudo bash ./run-huawei-emui9-ab-a13.sh /home/iceows/build-output/LeaOS-20.0-${srcDateFile}-arm64_bvN.img "LeaOS" "POT-LX1" "N" "Y"
 mv s-erofs.img /media/iceows/Sauvegardes/ice-rom/LeaOS/20.0/LeaOS-20.0-${srcDateFile}-iceows-pot.img
+sudo bash ./run-huawei-emui10-ab-a13.sh /home/iceows/build-output/LeaOS-20.0-${srcDateFile}-treble_arm64_bvN.img "LeaOS" "CLT-L29" "Y"
+mv s-erofs.img /media/iceows/Sauvegardes/ice-rom/LeaOS/20.0/LeaOS-20.0-${srcDateFile}-iceows-clt.img
 
 xz -cv /media/iceows/Sauvegardes/ice-rom/LeaOS/20.0/LeaOS-20.0-${srcDateFile}-iceows-ane.img -T0 > /media/iceows/Sauvegardes/ice-rom/LeaOS/20.0/LeaOS-20.0-${srcDateFile}-iceows-ane.img.xz
 xz -cv /media/iceows/Sauvegardes/ice-rom/LeaOS/20.0/LeaOS-20.0-${srcDateFile}-iceows-fig.img -T0 > /media/iceows/Sauvegardes/ice-rom/LeaOS/20.0/LeaOS-20.0-${srcDateFile}-iceows-fig.img.xz
