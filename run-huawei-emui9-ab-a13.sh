@@ -182,6 +182,7 @@ mount -o loop,rw s-ab-raw.img d
 	
 	# bluetooth
 	echo "bluetooth.enable_timeout_ms=12000" >> build.prop
+	echo "persist.sys.bt.esco_transport_unit_size=16" >> build.prop
 	
 	# Usb
 	echo "persist.sys.usb.config=hisuite,mtp,mass_storage" >> build.prop 
@@ -205,7 +206,7 @@ mount -o loop,rw s-ab-raw.img d
 		xattr -w security.selinux u:object_r:system_file:s0 "media/bootanimation.zip"
 	fi
 
-	# ANE-LX1 Huawei P20 Lite 2017
+	# ANE-LX1 Huawei P20 Lite
 	if [ "$model" == "ANE-LX1" ];then
 		# NFC 
 		cp "$origin/files-patch/system/etc/NFC/libnfc_brcm_anne.conf" etc/libnfc-brcm.conf
@@ -235,6 +236,12 @@ mount -o loop,rw s-ab-raw.img d
 		echo "ro.product.system_ext.device=HWANE" >>  system_ext/etc/build.prop
 		echo "ro.product.system_ext.brand=HUAWEI" >>  system_ext/etc/build.prop
 		echo "ro.build.product=ANE" >> build.prop
+		echo "ro.lineage.device=HWANE" >>  build.prop
+				
+		# From iceows supl20 apk (# Hisi)
+		echo "is_hisi_connectivity_chip=1" >> build.prop
+		echo "ro.hardware.consumerir=hisi.hi6250" >> build.prop		
+		echo "ro.hardware.hisupl=hi1102"  >> build.prop;
 	fi	
 	
 	
@@ -274,7 +281,7 @@ mount -o loop,rw s-ab-raw.img d
 	# 2000 = shell
 	chown root:2000 bin/tee_auth_daemon
 	cp "$origin/files-patch/system/bin/79b77788-9789-4a7a-a2be-b60155eef5f4.sec" bin/79b77788-9789-4a7a-a2be-b60155eef5f4.sec
-	xattr -w security.selinux u:object_r:system_file:s0  bin/79b77788-9789-4a7a-a2be-b60155eef5f4
+	xattr -w security.selinux u:object_r:system_file:s0  bin/79b77788-9789-4a7a-a2be-b60155eef5f4.sec
 	cp "$origin/files-patch/system/lib64/libc_secshared.so" lib64/libc_secshared.so
 	xattr -w security.selinux u:object_r:system_lib_file:s0  lib64/libc_secshared.so
 	cp "$origin/files-patch/system/lib64/libtuidaemon.so" lib64/libtuidaemon.so
@@ -377,12 +384,7 @@ mount -o loop,rw s-ab-raw.img d
 		echo "(allow hi110x_daemon system_data_root_file (dir (read write)))" >> etc/selinux/plat_sepolicy.cil
 		echo "(allow hi110x_daemon socket_device (dir (read write)))" >> etc/selinux/plat_sepolicy.cil
 
-		# ------------------------------------ #
-		
-		# From iceows supl20 apk (# Hisi)
-		echo "is_hisi_connectivity_chip=1" >> build.prop
-		echo "ro.hardware.consumerir=hisi.hi6250" >> build.prop		
-		echo "ro.hardware.hisupl=hi1102"  >> build.prop;
+
 	fi
 	
 
