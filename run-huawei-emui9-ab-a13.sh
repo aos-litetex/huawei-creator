@@ -249,6 +249,9 @@ mount -o loop,rw s-ab-raw.img d
 		echo "ro.product.product.brand=HUAWEI" >>  product/etc/build.prop	
 		echo "ro.product.system_ext.device=HWPOT" >>  system_ext/etc/build.prop
 		echo "ro.product.system_ext.brand=HUAWEI" >>  system_ext/etc/build.prop
+s
+		# For FM Radio volume (# Hisi)
+		echo "ro.connectivity.chiptype=hisi"  >> build.prop;
 	fi	
 
 	# VTR-L09 / VTR-AL00 Huawei P10
@@ -361,6 +364,9 @@ mount -o loop,rw s-ab-raw.img d
 		echo "is_hisi_connectivity_chip=1" >> build.prop
 		echo "ro.hardware.consumerir=hisi.hi6250" >> build.prop		
 		echo "ro.hardware.hisupl=hi1102"  >> build.prop;
+		
+		# For FM Radio volume (# Hisi)
+		echo "ro.connectivity.chiptype=hisi"  >> build.prop;
 	fi
 
 	# ANE-LX1 Huawei P20 Lite
@@ -399,6 +405,9 @@ mount -o loop,rw s-ab-raw.img d
 		echo "is_hisi_connectivity_chip=1" >> build.prop
 		echo "ro.hardware.consumerir=hisi.hi6250" >> build.prop		
 		echo "ro.hardware.hisupl=hi1102"  >> build.prop;
+		
+		# For FM Radio volume (# Hisi)
+		echo "ro.connectivity.chiptype=hisi"  >> build.prop;
 	fi	
 
 	# BND-L21
