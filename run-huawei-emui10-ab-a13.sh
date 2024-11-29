@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Usage:
-#sudo bash run-huawei-emui10-ab-a13.sh  [/path/to/system.img] [version] [model device] [huawei animation]
+#sudo bash run-huawei-emui10-ab-a13.sh  [/path/to/system.img] [version] [model device] [boot animation]
 #cleanups
 #A13 version
 umount d
@@ -158,7 +158,7 @@ mount -o loop,rw s-ab-raw.img d
 
 	# Color
 	echo "persist.sys.sf.native_mode=1" >> build.prop
-	echo "persist.sys.sf.color_mode=1.0" >> build.prop
+	echo "persist.sys.sf.color_mode=1" >> build.prop
 	echo "persist.sys.sf.color_saturation=1.1" >> build.prop
 	
 	# CPU
@@ -237,10 +237,35 @@ mount -o loop,rw s-ab-raw.img d
 	rm -rf product/overlay/treble-overlay-sharp-*
 	
 	#----------------------------- SELinux rules Now include in huawei.te ------------------------------	
-	
-	
 
+	#----------------------------- Set prop like vendor huawei --------------------------------------------------------		
+	# Kirin prop
+	echo "persist.kirin.alloc_buffer_sync=true" >> build.prop
+	echo "persist.kirin.texture_cache_opt=1"  >> build.prop
+	echo "persist.kirin.touch_move_opt=1"  >> build.prop
+	echo "persist.kirin.touch_vsync_opt=1"  >> build.prop
+	echo "persist.kirin.touchevent_opt=1"  >> build.prop
+	
+	echo "persist.kirin.media.usbvoice.enable=true"  >> build.prop
+	echo "persist.kirin.media.usbvoice.name=USB-Audio - HUAWEI GLASS"  >> build.prop
+	echo "persist.kirin.media.offload.enable=true"  >> build.prop
+	echo "persist.kirin.media.hires.enable=true"  >> build.prop
+	
+	echo "ro.kirin.config.hw_perfgenius=true"  >> build.prop
+	echo "ro.kirin.config.hw_board_ipa=true"  >> build.prop
 
+	# Enable lowlatency
+	echo "persist.media.lowlatency.enable=true" >> build.prop
+	echo "persist.kirin.media.lowlatency.enable=true" >> build.prop
+
+	#-----------------------------Clean vndk (EMUI10 have only vndk29) --------------------------------------------------------	
+
+	# Remove non use apex vndk
+	rm -rf "system_ext/apex/com.android.vndk.v30"
+	rm -rf "system_ext/apex/com.android.vndk.v31"
+	rm -rf "system_ext/apex/com.android.vndk.v32"
+
+	cd ../d
 )
 
 sleep 1
