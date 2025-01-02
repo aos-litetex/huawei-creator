@@ -13,5 +13,5 @@ docker build -t huawei-creator .
 # --privileged  is required for mount
 docker run --rm -it -v "%cd%":/data/huawei-creator --privileged huawei-creator
 
-./run-huawei-emui9-ab-a13.sh system.img "LeaOS" "ANE-LX1"
+./run-huawei-emui9-ab-a13.sh system.img "LeaOS 20" "ANE-LX1"
 ```
