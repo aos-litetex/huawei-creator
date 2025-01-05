@@ -9,9 +9,9 @@ Generate ARM64 AB (Huawei device) from ARM64 AB and include patches and optimiza
 ### Docker
 
 ```bash
-docker build -t huawei-creator .
+docker build -t creator .
 # --privileged  is required for mount
-docker run --rm -it -v "%cd%":/data/huawei-creator --privileged huawei-creator
+docker run --rm -it -v "%cd%":/data/creator --privileged creator
 
 ./run-huawei-emui9-ab-a13.sh system.img "LeaOS 20" "ANE-LX1"
 ```
